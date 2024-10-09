@@ -1,12 +1,12 @@
 # 第1次作業-作業-HW1
 >
->學號：1234567
+>學號：112111206
 ><br />
->姓名：王小明
+>姓名：李儲亮
 ><br />
->作業撰寫時間：180 (mins，包含程式撰寫時間)
+>作業撰寫時間：60m
 ><br />
->最後撰寫文件日期：2023/09/22
+>最後撰寫文件日期：2024/10/09
 >
 
 本份文件包含以下主題：(至少需下面兩項，若是有多者可以自行新增)
@@ -56,6 +56,15 @@ public void mt_getResult(){
 1. 請解釋何謂git中下列指令代表什麼？並舉個例子，同時必須說明該例子的結果。其指令有add、commit、push、fetch、pull、branch、checkout與merge。
 
 Ans:
+    
+    git add 將變更的文件添加到暫存區（stage），以便準備提交
+    git commit 將暫存區的變更提交到本地倉庫，並附上描述信息
+    git push 將本地倉庫的提交推送到遠端倉庫
+    git fetch 從遠端倉庫下載變更（不自動合併），更新本地的遠端追蹤分支
+    git pull 從遠端倉庫下載變更並自動合併到當前分支
+    git branch 列出、創建或刪除分支
+    git checkout 切換到另一個分支或恢復文件到某個版本
+    git merge 將另一個分支的變更合併到當前分支
 
 
 
@@ -107,6 +116,42 @@ Ans:
 4. **[課外題]**：請找尋資料，說明何謂**單元測試**，請新增檔案**hw1_3.py**，並利用溫度計攝氏轉華氏撰寫單元測試。
 
 Ans:
+# 主程式：攝氏轉華氏的函數
+def c_to_f(c: float) -> float:
+    return c * 9 / 5 + 32
+
+# 簡單的測試函數，使用 assert 進行測試
+def test_c_to_f():
+    test_cases = [
+        (0, 32),
+        (100, 212),
+        (-40, -40),
+        (37, 98.6)
+    ]
+    for celsius, expected in test_cases:
+        assert c_to_f(celsius) == expected
+    print("簡單測試：All passed")
+
+# 使用 unittest 模組進行進一步的單元測試
+import unittest
+
+class TestTemperatureConversion(unittest.TestCase):
+    def test_cases(self):
+        test_cases = [
+            (100, 212), (0, 32), (37, 98.6),
+            (-40, -40), (-20, -4),
+            (1, 33.8), (-1, 30.2)
+        ]
+        for celsius, expected in test_cases:
+            self.assertAlmostEqual(c_to_f(celsius), expected)
+
+# 主程序：執行簡單測試和單元測試
+if __name__ == '__main__':
+    test_c_to_f()
+    unittest.main()
+
+
+
 
 
 
